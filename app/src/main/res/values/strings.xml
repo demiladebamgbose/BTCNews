@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BTCNews</string>
+    <string name="poweredby_news_api">Poweredby NewsAPI</string>
+    <string name="date">12/3/12</string>
+    <string name="author">author</string>
+    <string name="john_doe">john doe</string>
+    <string name="source">fortune</string>
 </resources>

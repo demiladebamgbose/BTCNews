@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import net.androidbootcamp.btcnews.R;
+import net.androidbootcamp.btcnews.activities.DetailActivity;
 import net.androidbootcamp.btcnews.db.Article;
 
 import java.util.ArrayList;
@@ -51,14 +52,14 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.AdapterV
         holder.mTitle.setText(article.getTitle());
         Glide.with(mContext).load(article.getUrlToImage()).into(holder.imageView);
 
-//        holder.mCard.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(mContext, DetailActivity.class);
-//                //intent.putExtra("Article", article);
-//                mContext.startActivity(intent);
-//            }
-//        });
+        holder.mCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, DetailActivity.class);
+                intent.putExtra("Article", article);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
