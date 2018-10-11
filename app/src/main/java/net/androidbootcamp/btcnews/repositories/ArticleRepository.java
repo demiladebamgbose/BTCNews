@@ -2,6 +2,7 @@ package net.androidbootcamp.btcnews.repositories;
 
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
+import android.widget.Toast;
 
 import net.androidbootcamp.btcnews.BtcNewsApp;
 import net.androidbootcamp.btcnews.R;
@@ -10,6 +11,7 @@ import net.androidbootcamp.btcnews.db.ArticleDatabase;
 import net.androidbootcamp.btcnews.retrofit.ArticlesApi;
 import net.androidbootcamp.btcnews.retrofit.model.ArticleResponse;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,8 +46,9 @@ public class ArticleRepository {
 
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, -3);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "YYYY-MM-DD", Locale.getDefault());
-        String date = simpleDateFormat.format(calendar.getTime());
+        DateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
+        String date = formatter.format(calendar.getTime());
+        Toast.makeText(mContext, date, Toast.LENGTH_LONG).show();
 
 
 

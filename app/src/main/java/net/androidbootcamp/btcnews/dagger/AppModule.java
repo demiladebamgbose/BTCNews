@@ -7,7 +7,9 @@ import com.google.gson.GsonBuilder;
 import net.androidbootcamp.btcnews.BtcNewsApp;
 import net.androidbootcamp.btcnews.db.Article;
 import net.androidbootcamp.btcnews.db.ArticleDatabase;
+import net.androidbootcamp.btcnews.repositories.ArticleRepository;
 import net.androidbootcamp.btcnews.retrofit.ArticlesApi;
+import net.androidbootcamp.btcnews.viewModel.ViewModelFactory;
 
 import java.util.concurrent.Executors;
 
@@ -28,6 +30,12 @@ public class AppModule {
 
     public AppModule(BtcNewsApp btcNewsApp) {
         this.mBtcNewsApp = btcNewsApp;
+    }
+
+    @Provides
+    @Singleton
+    BtcNewsApp providesBtcNewsApp() {
+        return mBtcNewsApp;
     }
 
 
@@ -63,5 +71,17 @@ public class AppModule {
                 ArticleDatabase.class, Article.getTableName())
                 .fallbackToDestructiveMigration()
                 .build();
+    }
+
+    @Singleton
+    @Provides
+    ArticleRepository providesArticleRepository(ArticlesApi articlesApi, ArticleDatabase articleDatabase, BtcNewsApp btcNewsApp) {
+        return new ArticleRepository(articleDatabase, articlesApi, btcNewsApp);
+    }
+
+    @Singleton
+    @Provides
+    ViewModelFactory providesViewModelFactory (ArticleRepository articleRepository) {
+        return new ViewModelFactory(articleRepository);
     }
 }

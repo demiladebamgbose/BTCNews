@@ -10,7 +10,7 @@ public interface ArticlesApi {
 
     @GET("/everything")
     Call<ArticleResponse> getArticles(@Query("q") String query,
-                                      @Query("from") String date,
+                                      @Query(value = "from", encoded = true) String date,
                                       @Query("sortBy") String feild,
                                       @Query("apiKey") String apiKey);
 }
