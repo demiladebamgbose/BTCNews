@@ -25,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class AppModule {
-    private static final String baseUrl = "https://newsapi.org/v2/";
+    private String baseUrl = "https://newsapi.org/";
     private BtcNewsApp mBtcNewsApp;
 
     public AppModule(BtcNewsApp btcNewsApp) {

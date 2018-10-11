@@ -8,7 +8,7 @@ import retrofit2.http.Query;
 
 public interface ArticlesApi {
 
-    @GET("/everything")
+    @GET("/v2/everything")
     Call<ArticleResponse> getArticles(@Query("q") String query,
                                       @Query(value = "from", encoded = true) String date,
                                       @Query("sortBy") String feild,
