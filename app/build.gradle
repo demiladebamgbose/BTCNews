@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -43,5 +47,17 @@ dependencies {
 
     // Converter factory
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    //Viewmodel and Livedata
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+
+    //Room
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1" // use kapt for Kotlin
+    implementation "android.arch.persistence.room:rxjava2:1.1.1"
+
+    //Butterknife
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
 }

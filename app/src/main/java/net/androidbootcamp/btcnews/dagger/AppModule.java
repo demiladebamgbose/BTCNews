@@ -1,11 +1,13 @@
 package net.androidbootcamp.btcnews.dagger;
 
-import com.google.gson.Gson;
+import android.arch.persistence.room.Room;
+
 import com.google.gson.GsonBuilder;
 
 import net.androidbootcamp.btcnews.BtcNewsApp;
+import net.androidbootcamp.btcnews.db.Article;
+import net.androidbootcamp.btcnews.db.ArticleDatabase;
 import net.androidbootcamp.btcnews.retrofit.ArticlesApi;
-import net.androidbootcamp.btcnews.retrofit.model.Article;
 
 import java.util.concurrent.Executors;
 
@@ -18,7 +20,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static java.nio.file.attribute.AclEntry.newBuilder;
 
 @Module
 public class AppModule {
@@ -53,5 +54,14 @@ public class AppModule {
     @Provides
     ArticlesApi providesArticlesApi (Retrofit retrofit) {
         return retrofit.create(ArticlesApi.class);
+    }
+
+    @Singleton
+    @Provides
+    ArticleDatabase providesArticleDatabase(BtcNewsApp btcNewsApp) {
+        return Room.databaseBuilder(btcNewsApp.getApplicationContext(),
+                ArticleDatabase.class, Article.getTableName())
+                .fallbackToDestructiveMigration()
+                .build();
     }
 }
