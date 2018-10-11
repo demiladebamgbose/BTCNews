@@ -40,14 +40,11 @@ public class MainActivity extends AppCompatActivity {
         // instantiate viewmodel
         mMainViewModel = ViewModelProviders.of(this, mViewModelFactory).get(MainViewModel.class);
 
-//        //Set up toolbar
-//        mToolbar.setTitle(R.string.app_name);
-//        setSupportActionBar(mToolbar);
 
         mAdapter = new ArticleAdapter(this);
 
 
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         mRecyclerView.setAdapter(mAdapter);
 
 
