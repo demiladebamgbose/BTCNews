@@ -1,8 +1,10 @@
 package net.androidbootcamp.btcnews.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +20,7 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -71,5 +74,12 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
+    @OnClick(R.id.link_out)
+    public void linkToNews(View v) {
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(article.getUrl()));
+        startActivity(intent);
+    }
 
 }
