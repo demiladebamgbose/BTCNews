@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import net.androidbootcamp.btcnews.R;
 import net.androidbootcamp.btcnews.activities.DetailActivity;
@@ -50,7 +51,13 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.AdapterV
 
         Article article = mArticles.get(position);
         holder.mTitle.setText(article.getTitle());
-        Glide.with(mContext).load(article.getUrlToImage()).into(holder.imageView);
+        Glide.with(mContext)
+                .load(article.getUrlToImage())
+                .apply(new RequestOptions()
+                        .placeholder(R.drawable.news)
+                        .centerCrop()
+                )
+                .into(holder.imageView);
 
         holder.mCard.setOnClickListener(new View.OnClickListener() {
             @Override

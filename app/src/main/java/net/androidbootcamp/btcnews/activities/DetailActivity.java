@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import net.androidbootcamp.btcnews.R;
 import net.androidbootcamp.btcnews.db.Article;
@@ -46,7 +47,13 @@ public class DetailActivity extends AppCompatActivity {
         if (article != null) {
 
         }
-        Glide.with(this).load(article.getUrlToImage()).into(newsImage);
+        Glide.with(this)
+                .load(article.getUrlToImage())
+                .apply(new RequestOptions()
+                        .placeholder(R.drawable.news)
+                        .centerCrop()
+                )
+                .into(newsImage);
         newsTitle.setText(article.getTitle());
         newsBody.setText(article.getDescription());
         newsSource.setText(article.getSourceName());
